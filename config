@@ -174,7 +174,7 @@ bar {
 
 exec  setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll'
 
-bindsym $mod+t exec /media/forthe/1/Programs/Telegram/Telegram
+bindsym $mod+t exec /home/tetenkov/Software/Telegram/Telegram
 bindsym $mod+g exec /media/alex/1/eclipse/eclipse/eclipse
 # Pulse Audio controls
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +5%  #increase sound volume
@@ -190,3 +190,12 @@ workspace 5 output HDMI-0
 exec xinput --set-prop 13 339 -0.6
 bindsym $mod+ctrl+alt+r exec sudo pm-suspend
 
+# Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
